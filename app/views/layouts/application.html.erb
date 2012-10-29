@@ -23,12 +23,13 @@
           <li><a href="#">Admin</a></li>
           <li><%= link_to("Log out", destroy_user_session_path,
           :method => :delete) %></li>
-          <li><%= current_user.name %></li>
+          <li><a href="#"><%= current_user.name %></a></li>
         </ul>
         <% else %>
         <ul class="nav pull-right">
           <li><%= link_to("Register", new_user_registration_path) %></li>
           <li><%= link_to("Sign In", new_user_session_path) %></li>
+        </ul>
         <% end %>
 
 
