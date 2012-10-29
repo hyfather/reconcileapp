@@ -17,7 +17,7 @@ describe GroupsController do
     post :create, {:group => {:name => "apt1314", :description => "sample apt. group", :users => "abc@rec.com, xyz@rec.com"}}
 
     group = Group.find_by_name("apt1314")
-    group.users.count.should == 2
+    group.users.count.should == 3
   end
 
   it "should show a group" do

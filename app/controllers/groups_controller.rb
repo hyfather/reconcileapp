@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
 
   def create
     users = params[:group].delete(:users)
-    @group = Group.create(params[:group])
+    @group = current_user.groups.create(params[:group])
 
     users = find_or_create_users(users)
     @group.users << users
