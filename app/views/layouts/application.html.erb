@@ -8,10 +8,39 @@
   </head>
   <body>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
-    <%= yield %>
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="navbar-inner">
+        <a class="brand" href="/">Reconcile App</a>
+        <ul class="nav">
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="#">Expenses</a></li>
+          <li><a href="#">Statistics</a></li>
+        </ul>
 
+        <% if current_user %>
+        <ul class="nav pull-right">
+          <li><a href="#">Admin</a></li>
+          <li><%= link_to("Log out", destroy_user_session_path,
+          :method => :delete) %></li>
+          <li><%= current_user.name %></li>
+        </ul>
+        <% else %>
+        <ul class="nav pull-right">
+          <li><%= link_to("Register", new_user_registration_path) %></li>
+          <li><%= link_to("Sign In", new_user_session_path) %></li>
+        <% end %>
+
+
+      </div>
+    </div>
+
+
+    <%= "<div class='notice'> #{notice.to_s} </div>".html_safe if notice %>
+    <%= "<div class='alert'> #{alert.to_s} </div>".html_safe if alert %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
