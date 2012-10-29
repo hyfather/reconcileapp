@@ -1,0 +1,9 @@
+<div class="box">
+  <h2><%= @group.name %></h2>
+  <p> <%= @group.description %> </p>
+  <ul>
+    <% @group.users.each do |u| %>
+    <li><%= u.name %></li>
+    <% end %>
+  </ul>
+</div>

@@ -2,6 +2,8 @@ Reconcile::Application.routes.draw do
   devise_for :users
   root :to => "home#index"
   match "/dashboard" => "home#dashboard", :as => :dashboard
+
+  resources :groups
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

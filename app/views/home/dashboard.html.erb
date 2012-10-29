@@ -1,1 +1,15 @@
-
+<div class="box">
+<% if current_user.groups.empty? %>
+<div class="span8 offset2">
+  <h2>You don't seem to be in any group.
+  </h2>
+  <%= link_to("Let's create one!", new_group_path, {:class => "btn btn-primary"} ) %>
+</div>
+<% else %>
+<ul>
+  <% current_user.groups.each do |g| %>
+  <li><h3><%= link_to g.name, group_path(g) %></h3></li>
+  <% end %>
+</ul>
+<% end %>
+</div>
