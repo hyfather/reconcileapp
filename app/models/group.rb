@@ -5,4 +5,8 @@ class Group < ActiveRecord::Base
   has_many :users, :through => :memberships
 
   has_many :expenses
+
+  def currency_sign
+    "$"
+  end
 end

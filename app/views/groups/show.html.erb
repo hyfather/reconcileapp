@@ -24,7 +24,8 @@
 
   <div class="span12">
     <div class="row">
-      <%= link_to "New Expense", new_group_expense_path(@group), :class => "btn btn-primary" %>
+      <a href="<%= new_group_expense_path(@group) %>" class="btn
+      btn-primary"><i class="icon-pencil icon-white"></i> New Expense</a>
     </div>
 
     <br />
@@ -42,20 +43,21 @@
         <thead>
           <tr>
             <th>Amount</th>
-            <th>Merchant</th>
-            <th>Details</th>
             <th>Paid By</th>
             <th>Paid For</th>
+            <th>Merchant</th>
+            <th>Details</th>
           </tr>
         </thead>
         <tbody>
           <% @group.expenses.each do |e| %>
           <tr class="<%= class_for_expense_row(e, current_user) %>">
-            <td><%= e.amount %></td>
-            <td><%= e.title %></td>
-            <td><%= e.description %></td>
+            <td title="<%= amount_per_person(e) %>"
+            class="amount"><%= e.group.currency_sign + e.amount.round(2).to_s %></td>
             <td><%= e.payer.name %></td>
-            <td><%= e.users.map(&:name).join(', ') %></td>
+            <td title="<%= title_of_all_users_for_the_expense(e) %>"><%= all_users_for_the_expense(e) %></td>
+            <td><%= e.title %></td>
+            <td title="<%= e.description %>"><%= truncate(e.description) %></td>
           </tr>
           <% end %>
         </tbody>

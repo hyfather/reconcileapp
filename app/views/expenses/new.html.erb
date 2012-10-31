@@ -2,18 +2,25 @@
   <div class="well">
   <%= form_for(@expense, :url => group_expenses_path(@group), :html =>
   {:class => "form-inline"}) do |f| %>
+
   <div class="input-prepend">
-    <span class="add-on">$</span>
-    <%= f.text_field(:amount, {:class => "span1", :placeholder => "0.00"}) %>
+    <span class="add-on"><%= @group.currency_sign %></span>
+    <%= f.text_field(:amount, {:class => "span1", :placeholder =>
+    "0.00"}) %>
   </div>
+
   <%= f.text_field(:title, {:class => "span2",
-  :placeholder => "Merchant"}) %>
+  :placeholder => "Merchant", :title => "Whom did you pay? Safeway,
+  Target, Comcast or maybe your Landlord?", :rel => "tooltip"}) %>
+
   <%= f.text_field(:description, {:class => "span6",
-  :placeholder => "Details of Items Purchased"}) %>
+  :placeholder => "Details of Items Purchased", :title => "Enlist every item that you bought -- bread? pizza? tomatoes? toilet paper?"}) %>
 
   <%= select_tag(:expense_users, options_for_select(@group.users.map {|u| [u.name, u.id]}),
-  :multiple => true, :name => "expense[users][]", :class => "span2") %>
-
+  :multiple => true, :name => "expense[users][]", :class => "span2",
+  :title => "This expenditure benefited who all? Don't forget to
+  select yourself if you were also party to the expense! (Keep ctrl or
+  cmd pressed while selecting multiple options).") %>
 
   <%= f.submit "Go", :class => "btn btn-success btn-large" %>
   <% end %>
