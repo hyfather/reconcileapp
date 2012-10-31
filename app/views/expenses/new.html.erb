@@ -1,0 +1,21 @@
+<div class="box">
+  <div class="well">
+  <%= form_for(@expense, :url => group_expenses_path(@group), :html =>
+  {:class => "form-inline"}) do |f| %>
+  <div class="input-prepend">
+    <span class="add-on">$</span>
+    <%= f.text_field(:amount, {:class => "span1", :placeholder => "0.00"}) %>
+  </div>
+  <%= f.text_field(:title, {:class => "span2",
+  :placeholder => "Merchant"}) %>
+  <%= f.text_field(:description, {:class => "span6",
+  :placeholder => "Details of Items Purchased"}) %>
+
+  <%= select_tag(:expense_users, options_for_select(@group.users.map {|u| [u.name, u.id]}),
+  :multiple => true, :name => "expense[users][]", :class => "span2") %>
+
+
+  <%= f.submit "Go", :class => "btn btn-success btn-large" %>
+  <% end %>
+  </div>
+</div>

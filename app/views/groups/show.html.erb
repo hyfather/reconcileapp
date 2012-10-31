@@ -1,9 +1,27 @@
 <div class="box">
-  <h2><%= @group.name %></h2>
-  <p> <%= @group.description %> </p>
-  <ul>
-    <% @group.users.each do |u| %>
-    <li><%= u.name %></li>
-    <% end %>
-  </ul>
+  <div class="span12">
+    <div class="span6">
+      <h1><%= @group.name %></h1>
+      <p> <%= @group.description %> </p>
+    </div>
+    <div class="span4 pull-right">
+      <table class="table table-condensed">
+        <thead></thead>
+        <tbody>
+          <% @group.users.each do |u| %>
+          <tr>
+            <td><%= u.name %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="span12">
+    <%= link_to "New Expense", new_group_expense_path(@group), :class => "btn btn-primary" %>
+
+
+  </div>
 </div>
