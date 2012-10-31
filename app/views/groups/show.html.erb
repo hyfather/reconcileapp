@@ -18,10 +18,50 @@
     </div>
   </div>
 
+  <div class="span12">
+    <hr>
+  </div>  
 
   <div class="span12">
-    <%= link_to "New Expense", new_group_expense_path(@group), :class => "btn btn-primary" %>
+    <div class="row">
+      <%= link_to "New Expense", new_group_expense_path(@group), :class => "btn btn-primary" %>
+    </div>
 
+    <br />
 
+    <% if @group.expenses.empty? %>
+    <div class="row">
+      <div class="offset2">
+        <h2>No expenses have been logged here yet!</h2>
+      </div>
+    </div>
+    <% else %>
+    <div class="row">
+      <div class="span12">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Merchant</th>
+            <th>Details</th>
+            <th>Paid By</th>
+            <th>Paid For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @group.expenses.each do |e| %>
+          <tr class="<%= class_for_expense_row(e, current_user) %>">
+            <td><%= e.amount %></td>
+            <td><%= e.title %></td>
+            <td><%= e.description %></td>
+            <td><%= e.payer.name %></td>
+            <td><%= e.users.map(&:name).join(', ') %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
