@@ -18,6 +18,6 @@ module GroupsHelper
   end
 
   def amount_per_person(expense)
-    "#{expense.group.currency_sign}#{(expense.amount / expense.users.count).round(2)} per person"
+    "#{expense.group.currency_sign}#{expense.amount_per_person} per person"
   end
 end

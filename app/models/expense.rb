@@ -6,4 +6,8 @@ class Expense < ActiveRecord::Base
 
   belongs_to :payer, :class_name => 'User'
   belongs_to :group
+
+  def amount_per_person
+    (amount / users.count).round(2) if users.present?
+  end
 end

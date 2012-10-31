@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
   has_many :expenses, :through => :transactions
 
   has_many :payments, :class_name => "Expense", :foreign_key => 'payer_id'
+
+  def owes_total
+    expenses.map(&:amount_per_person).reduce(&:+)
+  end
 end
