@@ -52,12 +52,21 @@
         <tbody>
           <% @group.expenses.each do |e| %>
           <tr class="<%= class_for_expense_row(e, current_user) %>">
+
             <td title="<%= amount_per_person(e) %>"
-            class="amount"><%= e.group.currency_sign + e.amount.round(2).to_s %></td>
+            class="amount"><%= e.group.currency_sign +
+            e.amount.round(2).to_s %></td>
+
             <td><%= e.payer.name %></td>
-            <td title="<%= title_of_all_users_for_the_expense(e) %>"><%= all_users_for_the_expense(e) %></td>
-            <td><%= e.title %></td>
-            <td title="<%= e.description %>"><%= truncate(e.description) %></td>
+
+            <td title="<%= title_of_all_users_for_the_expense(e)
+            %>"><%= all_users_for_the_expense(e) %></td>
+
+            <td><%= e.merchant %></td>
+
+            <td title="<%= e.description
+            %>"><%= truncate(e.description) %></td>
+
           </tr>
           <% end %>
         </tbody>

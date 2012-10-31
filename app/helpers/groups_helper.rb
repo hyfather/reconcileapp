@@ -1,13 +1,19 @@
 module GroupsHelper
-  def title_of_all_users_for_the_expense(expense)
-    expense.users.map(&:name).join(', ')
+  ALL_USERS_LENGTH = 30
+  
+  def list_of_all_users(e)
+    e.users.map(&:name).join(', ')
   end
 
-  def all_users_for_the_expense(expense)
-    if expense.group.users.count == expense.users.count
+  def title_of_all_users_for_the_expense(e)
+    list_of_all_users(e).length > ALL_USERS_LENGTH ? list_of_all_users(e) : ""
+  end
+
+  def all_users_for_the_expense(e)
+    if e.group.users.count == e.users.count
       "Everyone"
     else
-      truncate(title_of_all_users_for_the_expense(expense), :length => 30)
+      truncate(list_of_all_users(e), :length => 30)
     end
   end
 

@@ -1,5 +1,5 @@
 class Expense < ActiveRecord::Base
-  attr_accessible :amount, :description, :title
+  attr_accessible :amount, :description, :merchant
 
   has_many :transactions
   has_many :users, :through => :transactions

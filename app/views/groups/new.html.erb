@@ -1,17 +1,49 @@
 <div class="box">
-  <%= form_for @group do |f| %>
-  <div><%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+  <h2> Let's get set up with your new expenses group!</h2>
+<div class="group_form">
+ <%= form_for(@group, :html => {:class => "form-horizontal"}) do |f| %>
 
-  <div><%= f.label :description %>
-    <%= f.text_area :description %>
+ <div class="control-group">
+   <%= f.label :name, :class => "control-label" %>
+   <div class="controls">
+     <%= f.text_field :name, :title => 'e.g. "Apartment 1314",
+     "Engineering Team" or "HR Team"' %>
   </div>
+ </div>
+
+ <div class="control-group">
+   <%= f.label :description, :class => "control-label" %>
+   <div class="controls">
+     <%= f.text_area :description, :rows => 4, :title => 'A small
+     description, like "day-to-day home expenses" or "racquetball
+     club" or even "camping trip during thanksgiving 2012"' %>
+  </div>
+ </div>
   
-  <div><%= f.label :members %>
-    <%= f.text_area :users %>
+ <div class="control-group">
+   <%= f.label :members, :class => "control-label" %>
+   <div class="controls">
+     <%= f.text_area :users, :rows => 5, :value => "", :placeholder =>
+     "john@doe.com, bob@alice.com", :title => "Enter a comma separated
+     list of email address of members who'll be a part of this
+     group. If they don't already have a Reconcile App account, one will
+     be created for them." %>
   </div>
+ </div>
 
-  <%= f.submit "Create", :class => "btn btn-primary" %>
+ <div class="control-group">
+   <%= f.label :currency_sign, :class => "control-label" %>
+   <div class="controls">
+     <%= f.text_field :currency_sign, :value => "$", :title => "We'll
+     use this label whenever we speak about money!" %>
+  </div>
+ </div>
+
+ <div class="control-group">
+   <div class="controls">
+     <%= f.submit "Create", :class => "btn btn-primary" %>
+  </div>
+ </div>
   <% end %>
+</div>
 </div>

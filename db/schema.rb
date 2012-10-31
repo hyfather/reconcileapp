@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031062933) do
+ActiveRecord::Schema.define(:version => 20121031204533) do
 
   create_table "expenses", :force => true do |t|
     t.float    "amount"
-    t.string   "title"
+    t.string   "merchant"
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(:version => 20121031062933) do
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "currency_sign"
   end
 
   create_table "memberships", :force => true do |t|

@@ -1,5 +1,7 @@
 <div class="box">
   <div class="well">
+
+    <div class="expenses_form">
   <%= form_for(@expense, :url => group_expenses_path(@group), :html =>
   {:class => "form-inline"}) do |f| %>
 
@@ -9,7 +11,7 @@
     "0.00"}) %>
   </div>
 
-  <%= f.text_field(:title, {:class => "span2",
+  <%= f.text_field(:merchant, {:class => "span2",
   :placeholder => "Merchant", :title => "Whom did you pay? Safeway,
   Target, Comcast or maybe your Landlord?", :rel => "tooltip"}) %>
 
@@ -25,4 +27,5 @@
   <%= f.submit "Go", :class => "btn btn-success btn-large" %>
   <% end %>
   </div>
+</div>
 </div>

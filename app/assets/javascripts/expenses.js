@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("input").tooltip({
+  $(".expenses_form input").tooltip({
     'trigger' : 'focus',
     'placement' : 'bottom'
   });

@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe ExpensesController do
+  render_views
+  
   before(:each) do
     @user = User.create(:name => "mango", :email => "mango@mango.com", :password => "password")
     sign_in @user
@@ -19,7 +21,7 @@ describe ExpensesController do
     other_user = User.create(:name => "banana", :email => "banana@mango.com", :password => "password")
     group.users << [@user, other_user]
     
-    post :create, :group_id => group.id, "expense" => {"amount"=>"5", "title"=>"Safeway", "description"=>"pizza tortilla tomatoes", "users"=>[@user.id, other_user.id]}
+    post :create, :group_id => group.id, "expense" => {"amount"=>"5", "merchant"=>"Safeway", "description"=>"pizza tortilla tomatoes", "users"=>[@user.id, other_user.id]}
 
     assigns[:expense].payer.id.should == @user.id
     assigns[:expense].users.map(&:id).sort.should == [@user.id, other_user.id].sort
