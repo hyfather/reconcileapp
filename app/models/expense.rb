@@ -5,4 +5,5 @@ class Expense < ActiveRecord::Base
   has_many :users, :through => :transactions
 
   belongs_to :payer, :class_name => 'User'
+  belongs_to :group
 end
