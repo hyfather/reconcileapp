@@ -18,6 +18,7 @@ describe GroupsController do
 
     group = Group.find_by_name("apt1314")
     group.users.count.should == 3
+    response.should redirect_to group_path(group)
   end
 
   it "should show a group" do

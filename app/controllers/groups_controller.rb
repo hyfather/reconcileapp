@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
     users = find_or_create_users(users)
     @group.users << users
 
-    head :created
+    redirect_to group_path @group
   end
 
   def show
