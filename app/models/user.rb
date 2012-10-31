@@ -12,4 +12,9 @@ class User < ActiveRecord::Base
 
   has_many :memberships
   has_many :groups, :through => :memberships
+
+  has_many :transactions
+  has_many :expenses, :through => :transactions
+
+  has_many :payments, :class_name => "Expense", :foreign_key => 'payer_id'
 end
