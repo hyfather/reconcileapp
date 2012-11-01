@@ -24,10 +24,17 @@
 
   <div class="span12">
     <div class="row">
-      <a href="<%= new_group_expense_path(@group) %>" class="btn
-      btn-primary"><i class="icon-pencil icon-white"></i> New Expense</a>
+      <div class="span2">
+      <a href="<%= new_group_expense_path(@group) %>" class="btn btn-primary">
+        <i class="icon-pencil icon-white"></i> New Expense
+      </a>
+      </div>
+      <div class="span2">
+        <span class="label label-important">
+          You owe <%= @group.currency_sign %><%= @group.amount_owed_by(current_user) %>
+        </span>
+      </div>
     </div>
-
     <br />
 
     <% if @group.expenses.empty? %>
