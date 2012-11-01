@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
   has_many :payments, :class_name => "Expense", :foreign_key => 'payer_id'
 
   def owes_total
-    expenses.map(&:amount_per_person).reduce(&:+)
+    total = Hash.new(0.0)
+    groups.map do |g|
+        total[g.currency_sign] = total[g.currency_sign] + g.expenses.map(&:amount_per_person).reduce(&:+)
+    end
+    total
   end
 end
