@@ -16,4 +16,9 @@ describe Expense do
 
     dinner.amount_per_person.should == 10.06
   end
+
+  it "should have a category associated with it" do
+    Expense.create(:amount => 5, :category => Expense::GROCERIES)
+    Expense.groceries.count.should == 1
+  end
 end

@@ -21,10 +21,11 @@ describe ExpensesController do
     other_user = User.create(:name => "banana", :email => "banana@mango.com", :password => "password")
     group.users << [@user, other_user]
     
-    post :create, :group_id => group.id, "expense" => {"amount"=>"5", "merchant"=>"Safeway", "description"=>"pizza tortilla tomatoes", "users"=>[@user.id, other_user.id]}
+    post :create, :group_id => group.id, "expense" => {"amount"=>"5", "merchant"=>"Safeway", "description"=>"pizza tortilla tomatoes", "users"=>[@user.id, other_user.id], "category" => "GROCERIES"}
 
     assigns[:expense].payer.id.should == @user.id
     assigns[:expense].users.map(&:id).sort.should == [@user.id, other_user.id].sort
+    Expense.groceries.reload.count.should == 1
     response.should redirect_to group_path(group)
   end
 

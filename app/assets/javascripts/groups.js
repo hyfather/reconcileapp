@@ -4,9 +4,19 @@ $(document).ready(function() {
     'placement' : 'left'
   });
 
+  $("td.category").tooltip({
+    'trigger' : 'hover',
+    'placement' : 'left'
+  });
+
   $("td").tooltip({
     'trigger' : 'hover',
     'placement' : 'right'
+  });
+
+  $("th").tooltip({
+    'trigger' : 'hover',
+    'placement' : 'top'
   });
 
   $(".group_form input").tooltip({

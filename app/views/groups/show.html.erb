@@ -51,6 +51,7 @@
             <th>Paid By</th>
             <th>Paid For</th>
             <th>Merchant</th>
+            <th title="Category"><i class="icon-list-alt"></i></th>
             <th>Details</th>
           </tr>
         </thead>
@@ -68,6 +69,8 @@
             %>"><%= all_users_for_the_expense(e) %></td>
 
             <td><%= e.merchant %></td>
+
+            <td class="category" title="<%= title_for_category(e)%>"><%= symbol_for_category(e) %></td>
 
             <td title="<%= e.description
             %>"><%= truncate(e.description) %></td>

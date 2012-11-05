@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031204533) do
+ActiveRecord::Schema.define(:version => 20121105080058) do
 
   create_table "expenses", :force => true do |t|
     t.float    "amount"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20121031204533) do
     t.datetime "updated_at",  :null => false
     t.integer  "payer_id"
     t.integer  "group_id"
+    t.string   "category"
   end
 
   create_table "groups", :force => true do |t|

@@ -15,8 +15,15 @@
   :placeholder => "Merchant", :title => "Whom did you pay? Safeway,
   Target, Comcast or maybe your Landlord?", :rel => "tooltip"}) %>
 
-  <%= f.text_field(:description, {:class => "span6",
+  <%= f.text_field(:description, {:class => "span4",
   :placeholder => "Details of Items Purchased", :title => "Enlist every item that you bought -- bread? pizza? tomatoes? toilet paper?"}) %>
+
+  <%= select_tag(
+      :expense_category,
+      options_for_select(Expense::CATEGORIES.map {|c| [c.capitalize, c]}),
+      :name => "expense[category]",
+      :class => "span2 category", :title => "Categorizing expenses
+      makes reporting and tracking easier" ) %>
 
   <%= select_tag(:expense_users, options_for_select(@group.users.map {|u| [u.name, u.id]}),
   :multiple => true, :name => "expense[users][]", :class => "span2",

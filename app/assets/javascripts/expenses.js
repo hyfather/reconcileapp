@@ -3,6 +3,10 @@ $(document).ready(function() {
     'trigger' : 'focus',
     'placement' : 'bottom'
   });
+  $("select.category").tooltip({
+    'trigger' : 'focus',
+    'placement' : 'top'
+  });
   $("select").tooltip({
     'trigger' : 'focus',
     'placement' : 'left'
