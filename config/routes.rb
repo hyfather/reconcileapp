@@ -2,7 +2,8 @@ Reconcile::Application.routes.draw do
   devise_for :users
   root :to => "home#index"
   match "/dashboard" => "home#dashboard", :as => :dashboard
-
+  match "/about" => "home#about", :as => :about
+  
   resources :groups do
     resources :expenses
   end
