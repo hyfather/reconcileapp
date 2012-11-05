@@ -6,12 +6,23 @@ class Group < ActiveRecord::Base
 
   has_many :expenses
 
-  def amount_owed_by(u)
+  def amount_owed(by, to)
+    expenses.select do |e|
+      e.payer == to and e.users.include?(by)
+    end.map(&:amount_per_person).reduce(:+)
+  end
+
+  def rolled_up_amount_owed(opts)
+    format_number(amount_owed(opts[:by], opts[:to])) -
+      format_number(amount_owed(opts[:to], opts[:by]))
+  end
+  
+  def cumulative_amount_owed_by(u)
     relevant_expenses = expenses.select {|e| e.users.include?(u) and e.payer != u}
     format_number(relevant_expenses.map(&:amount_per_person).reduce(:+))
   end
 
-  def amount_owed_to(u)
+  def cumulative_amount_owed_to(u)
     relevant_expenses = expenses.select {|e| e.payer == u}
     own_expenses = relevant_expenses.
       select {|e| e.users.include?(u)}.
@@ -21,8 +32,8 @@ class Group < ActiveRecord::Base
     format_number(total_expenses) - format_number(own_expenses)
   end
 
-  def rolled_up_amount(u)
-    amount_owed_to(u) - amount_owed_by(u)
+  def rolled_up_cumulative_amount(u)
+    cumulative_amount_owed_to(u) - cumulative_amount_owed_by(u)
   end
   
   private

@@ -7,4 +7,8 @@ $(document).ready(function() {
     'trigger' : 'focus',
     'placement' : 'left'
   });
+  $("tr.expense").tooltip({
+    'trigger' : 'hover',
+    'placement' : 'right'
+  });
 });

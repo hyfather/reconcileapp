@@ -38,15 +38,20 @@ describe Group do
     end
 
     it "should calculate amount owed by a given group member" do
-      @group1.amount_owed_by(@alice).should == 2
+      @group1.cumulative_amount_owed_by(@alice).should == 2
     end
 
+    it "should calculate the amount owed by a given group member to another member" do
+      @group1.rolled_up_amount_owed(:by => @alice, :to => @bob).should == -7
+      @group1.rolled_up_amount_owed(:by => @bob, :to => @alice).should == 7
+    end
+    
     it "should calculate amount owed to a given group member" do
-      @group1.amount_owed_to(@alice).should == 13 #5 for dinner + 8 for tea
+      @group1.cumulative_amount_owed_to(@alice).should == 13 #5 for dinner + 8 for tea
     end
 
     it "should calculate a rolled up dashboard amount for a group user" do
-      @group1.rolled_up_amount(@alice).should == 11
+      @group1.rolled_up_cumulative_amount(@alice).should == 11
     end
   end
 end

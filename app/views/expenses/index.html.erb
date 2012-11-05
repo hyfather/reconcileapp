@@ -1,3 +1,42 @@
 <div class="box">
+  <div class="span4 offset4">
+<div class="well">
+<h3><%= current_user.name %></h3>
+  <h4>Scorecard for <%= @group.name %></h4>
+<hr/>
+    <table class="table table-bordered">
+      <tbody>
+        <% (@group.users - [current_user]).each do |u| %>
+        <% amount = @group.rolled_up_amount_owed(:by => current_user, :to => u) %>
+        <% amount_abs = "#{@group.currency_sign}#{amount.abs}" %>
 
+        <tr class="expense <%= amount < 0 ? 'success' : 'error' %>"
+            title='<%= amount < 0 ? "#{u.name} owes you #{amount_abs}"
+            : "You owe #{amount_abs} to #{u.name}" %>'>
+          <td> <%= u.name %> </td>
+          <td> <i class="<%= amount < 0 ? 'icon-plus-sign' : 'icon-minus-sign'%>"> </i> <%= amount_abs %> </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+<h4>
+<% if (amount = @group.rolled_up_cumulative_amount(current_user)) < 0 %>
+   You owe a total of <%= @group.currency_sign%><%= amount.abs %> to people.
+<% else %>
+   People owe you a total of <%= @group.currency_sign%><%= amount.abs %>
+<% end %>
+</h4>
+<hr/>
+<span class="label label-important">Important</span>
+
+<h6>These expenses are calculated only in the scope of the group
+  '<%= @group.name %>' on <%= Time.now.to_formatted_s(:long) %>.
+  <br/>
+  It does not include amounts from other groups that
+  you may be a part of.</h6>
+</div>
+<div class="row">
+  <a href="<%= group_path(@group) %>" class="btn btn-primary">Back to Group</a>
+</div>
+  </div>
 </div>
