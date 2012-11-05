@@ -35,5 +35,9 @@ describe Group do
     it "should calculate amount owed by a given group member" do
       @group1.amount_owed_by(@alice).should == 2
     end
+
+    it "should calculate amount owed to a given group member" do
+      @group1.amount_owed_to(@alice).should == 5
+    end
   end
 end
