@@ -60,7 +60,7 @@
           <tr class="<%= class_for_expense_row(e, current_user) %>">
 
             <td title="<%= amount_per_person(e) %>"
-            class="amount"><%= number_to_currency(e.amount, :currency =>
+            class="amount"><%= number_to_currency(e.amount, :unit =>
             @group.currency_sign) %></td>
 
             <td><%= e.payer.name %></td>

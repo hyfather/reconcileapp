@@ -11,3 +11,7 @@
  *= require_self
  *= require_tree .
  */
+
+table td.group-name {
+   text-align: center;
+}

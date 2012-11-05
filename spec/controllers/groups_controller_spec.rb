@@ -22,7 +22,7 @@ describe GroupsController do
   end
 
   it "should show a group" do
-    group = Group.create(:name => "apt 1314", :description => "sample group")
+    group = Group.create(:name => "apt 1314", :description => "sample group", :currency_sign => "$")
     group.users << @user
     
     get :show, :id => group.id
