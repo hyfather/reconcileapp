@@ -26,6 +26,11 @@ describe Group do
       @dinner.users << [@bob, @alice]
       @dinner.save
 
+      @tea = @group1.expenses.create(:amount => 8)
+      @tea.payer = @alice
+      @tea.users << [@bob, @panda]
+      @tea.save
+
       @lunch = @group2.expenses.create(:amount => 20)
       @lunch.payer = @panda
       @lunch.users << [@panda, @alice]
@@ -37,7 +42,7 @@ describe Group do
     end
 
     it "should calculate amount owed to a given group member" do
-      @group1.amount_owed_to(@alice).should == 5
+      @group1.amount_owed_to(@alice).should == 13 #5 for dinner + 8 for tea
     end
   end
 end
