@@ -30,9 +30,7 @@
       </a>
       </div>
       <div class="span2">
-        <span class="label label-important">
-          You owe <%= @group.currency_sign %><%= @group.amount_owed_by(current_user) %>
-        </span>
+        <%= dashboard_amount_button(@group, current_user) %>
       </div>
     </div>
     <br />

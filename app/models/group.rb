@@ -21,6 +21,10 @@ class Group < ActiveRecord::Base
     format_number(total_expenses) - format_number(own_expenses)
   end
 
+  def rolled_up_amount(u)
+    amount_owed_to(u) - amount_owed_by(u)
+  end
+  
   private
   def format_number(n)
     n.nil? ? 0 : n.round(2)

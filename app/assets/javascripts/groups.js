@@ -18,4 +18,8 @@ $(document).ready(function() {
     'placement' : 'right'
   });
 
+  $("a.dashboard-amount-button").popover({
+      'trigger' : 'hover',
+      'placement' : 'right'
+    });
 });
