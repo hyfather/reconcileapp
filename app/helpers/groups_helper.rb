@@ -18,7 +18,8 @@ module GroupsHelper
   end
 
   def amount_per_person(expense)
-    "#{expense.group.currency_sign}#{expense.amount_per_person} per person"
+    "#{number_to_currency(expense.amount_per_person, :currency =>
+                       expense.group.currency_sign)} per person"
   end
 
   def dashboard_amount_button(group, user)
@@ -27,11 +28,10 @@ module GroupsHelper
      "href='#{group_expenses_path(group)}' ",
      "class='dashboard-amount-button btn #{ group.rolled_up_cumulative_amount(user) > 0 ? 'btn-success' : 'btn-danger' }' ",
      "title='#{user.name}' ",
-     "data-content='You owe #{group.currency_sign}#{group.cumulative_amount_owed_by(user)} to others.<br/>Others owe you #{group.currency_sign}#{group.cumulative_amount_owed_to(user)}' ",
+     "data-content='You owe #{number_to_currency(group.cumulative_amount_owed_by(user), :currency => group.currency_sign)} to others.<br/>Others owe you #{number_to_currency(group.cumulative_amount_owed_to(user), :currency => group.currency_sign)}' ",
      ">",
      "<i class='icon-user icon-white'></i> ",
-     group.currency_sign,
-     group.rolled_up_cumulative_amount(user).abs,
+     number_to_currency(group.rolled_up_cumulative_amount(user).abs, :currency => group.currency_sign),
      "</a>"
     ].join.html_safe
   end
