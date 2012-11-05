@@ -27,4 +27,17 @@ describe ExpensesController do
     assigns[:expense].users.map(&:id).sort.should == [@user.id, other_user.id].sort
     response.should redirect_to group_path(group)
   end
+
+  it "should show how expenses with respect to the currently signed in user" do
+    group = Group.create(:name => "apt1314")
+    group.users << [@user]
+    expense = group.expenses.create(:merchant => "Safeway", :amount => 5)
+    expense.payer = @user; expense.save
+    group.expenses.create(:merchant => "Target", :amount => 10)
+
+    get :index, :group_id => group.id
+    
+    assigns[:expenses].length.should == 1
+  end
+  
 end

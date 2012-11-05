@@ -1,6 +1,12 @@
 class ExpensesController < ApplicationController
   before_filter :authenticate_user!, :find_group
 
+  def index
+    @expenses = @group.expenses.select do |e|
+      e.payer == current_user or e.users.include?(current_user)
+    end
+  end
+  
   def new
     @expense = @group.expenses.new
   end

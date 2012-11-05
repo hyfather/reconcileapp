@@ -24,7 +24,7 @@ module GroupsHelper
   def dashboard_amount_button(group, user)
     [
      "<a ",
-     "href='#' ",
+     "href='#{group_expenses_path(group)}' ",
      "class='dashboard-amount-button btn #{ group.rolled_up_amount(user) > 0 ? 'btn-success' : 'btn-danger' }' ",
      "title='#{user.name}' ",
      "data-content='You owe #{group.currency_sign}#{group.amount_owed_by(user)}<br/>Others owe you #{group.currency_sign}#{group.amount_owed_to(user)}' ",
