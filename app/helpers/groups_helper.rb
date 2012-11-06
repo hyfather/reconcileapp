@@ -27,7 +27,7 @@ module GroupsHelper
      "<a ",
      "href='#{group_expenses_path(group)}' ",
      "class='dashboard-amount-button btn #{ group.rolled_up_cumulative_amount(user) > 0 ? 'btn-success' : 'btn-danger' }' ",
-     "title='#{user.name}' ",
+     "title='#{"<b>" + user.name + "</b>"}' ",
      "data-content='You owe #{number_to_currency(group.cumulative_amount_owed_by(user), :unit => group.currency_sign)} to others.<br/>Others owe you #{number_to_currency(group.cumulative_amount_owed_to(user), :unit => group.currency_sign)}' ",
      ">",
      "<i class='icon-user icon-white'></i> ",

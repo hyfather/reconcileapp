@@ -32,4 +32,9 @@ $(document).ready(function() {
       'trigger' : 'hover',
       'placement' : 'right'
     });
+  $("span.group-members").popover({
+    'trigger' : 'hover',
+    'placement' : 'right'
+  });
+
 });
