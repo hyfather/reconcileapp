@@ -30,7 +30,7 @@ describe ExpensesController do
   end
 
   it "should show how expenses with respect to the currently signed in user" do
-    group = Group.create(:name => "apt1314")
+    group = Group.create(:name => "apt1314", :currency_sign => "$")
     group.users << [@user]
     expense = group.expenses.create(:merchant => "Safeway", :amount => 5)
     expense.payer = @user; expense.save

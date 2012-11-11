@@ -21,9 +21,9 @@
     </table>
 <h4>
 <% if (amount = @group.rolled_up_cumulative_amount(current_user)) < 0 %>
-   You owe a total of <%= @group.currency_sign%><%= amount.abs %> to others.
+   You owe a total of <%= number_to_currency(amount.abs, :unit => @group.currency_sign) %> to others.
 <% else %>
-   Others owe you a total of <%= @group.currency_sign%><%= amount.abs %>
+   Others owe you a total of <%= number_to_currency(amount.abs, :unit => @group.currency_sign) %>
 <% end %>
 </h4>
 <hr/>
