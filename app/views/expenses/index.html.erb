@@ -14,7 +14,21 @@
             title='<%= amount < 0 ? "#{u.name} owes you #{amount_abs}"
             : "You owe #{amount_abs} to #{u.name}" %>'>
           <td> <%= u.name %> </td>
-          <td> <i class="<%= amount < 0 ? 'icon-plus-sign' : 'icon-minus-sign'%>"> </i> <%= amount_abs %> </td>
+          <td> <i class="<%= amount < 0 ? 'icon-plus-sign' :
+          'icon-minus-sign'%>"> </i> <%= amount_abs %> </td>
+ 
+         <td class="settle">
+           <% if amount < 0 %>
+           <a href="#" class="settleExpense btn btn-block btn-success"
+              data-payer="<%= u.name %>"
+              data-payer-id="<%= u.id %>",
+              data-amout="<%= amount.abs %>",
+              data-currency-sign="<%= @group.currency_sign %>">
+             <i class="icon-chevron-right icon-white"></i>
+           </a>
+           <% end %>
+         </td>
+
         </tr>
         <% end %>
       </tbody>
@@ -40,3 +54,5 @@
 </div>
   </div>
 </div>
+
+<%= render(:partial => "log_expense") %>
