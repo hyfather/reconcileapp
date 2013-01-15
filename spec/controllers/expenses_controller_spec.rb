@@ -40,17 +40,5 @@ describe ExpensesController do
     
     assigns[:expenses].length.should == 1
   end
-
-  it "should allow the person to whom money is owed to log a settlement" do
-    group = Group.create(:name => "apt1314")
-    other_user = User.create(:name => "banana", :email => "banana@mango.com", :password => "password")
-    expense = group.expenses.create(:merchant => "Safeway", :amount => 5)
-    expense.payer = @user
-    expense.users << [@user, other_user]
-    expense.save
-
-    
-    
-  end
   
 end
