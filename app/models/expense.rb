@@ -1,4 +1,4 @@
-class Expense < ActiveRecord::Base
+class Expense < LineItem
   attr_accessible :amount, :description, :merchant, :category
 
   has_many :transactions

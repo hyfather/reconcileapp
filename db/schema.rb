@@ -11,9 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105080058) do
+ActiveRecord::Schema.define(:version => 20121112231340) do
 
-  create_table "expenses", :force => true do |t|
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "currency_sign"
+  end
+
+  create_table "line_items", :force => true do |t|
     t.float    "amount"
     t.string   "merchant"
     t.string   "description"
@@ -22,14 +30,7 @@ ActiveRecord::Schema.define(:version => 20121105080058) do
     t.integer  "payer_id"
     t.integer  "group_id"
     t.string   "category"
-  end
-
-  create_table "groups", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "currency_sign"
+    t.string   "type"
   end
 
   create_table "memberships", :force => true do |t|

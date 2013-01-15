@@ -10,7 +10,7 @@ module ExpensesHelper
   def symbol_for_category(e)
     {
       Expense::GROCERIES => '<i class="icon-shopping-cart"></i>',
-      Expense::EQUIPMENT => '<i class="icon-tags"></i>',
+      Expense::EQUIPMENT => '<i class="icon-briefcase"></i>',
       Expense::MONTHLY => '<i class="icon-repeat"></i>',
       Expense::DINING => '<i class="icon-glass"></i>',
       Expense::OTHER => '<i class="icon-asterisk"></i>',
