@@ -3,12 +3,12 @@
 <div class="span8 offset2">
   <h2>You don't seem to be in any group.
   </h2>
-  <%= link_to("Let's create one!", new_group_path, {:class => "btn btn-primary"} ) %>
+  <%= link_to("Let's create one!", new_group_path, {:class => "btn btn-custom-success"} ) %>
 </div>
 <% else %>
 <div class="row">
 <div class="span2 offset8">
-<a href="<%=new_group_path%>" class="btn btn-primary">
+<a href="<%=new_group_path%>" class="btn btn-custom-success">
     <i class="icon-plus icon-white"></i>
     Create Group</a>
 </div>
