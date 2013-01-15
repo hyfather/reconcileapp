@@ -71,6 +71,11 @@
       </div>
     </div>
 
+    <% if ENV['NAVBAR_NOTICE'] %>
+    <div class="navbar notice">
+      <%= h ENV['NAVBAR_NOTICE'] %>
+    </div>
+    <% end %>
 
     <%= "<div class='notice'> #{notice.to_s} </div>".html_safe if notice %>
     <%= "<div class='alert'> #{alert.to_s} </div>".html_safe if alert %>
